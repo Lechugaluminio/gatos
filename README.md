@@ -1,74 +1,29 @@
-# Meowmeow cat cam meme detector
+Calabozo de los gatos
+tarea-02
+Integrante-1 Lechugaluminio
 
-Point your webcam at yourself, make a face/hand gesture, get a cat meme back in real time. Runs either as a desktop app (OpenCV windows) or entirely in the browser (MediaPipe WASM, no install).
+Integrante-2 
 
-Two windows/panes side by side: 
-- **Camera** — your webcam feed with hand landmarks drawn on top, plus a live debug readout in the corner
-- **Meme** — the meme matching whatever gesture you're currently making
+Asignatura: Dispositivos Periféricos y Plataformas para la Interacción Digital DIS9087
 
-## Gestures
+Proyecto de reconocimiento de gestos, utilizando Python y MediaPipe. Realizado tomando como referencia este repositorio:
 
-Checked in this order — when a pose could match more than one, the earlier one wins.
+https://github.com/catherpiee/meowmeowcatcam
+Gestos
+#	Nombre	              Cómo se activa	                          imagen
+1	main_room	       No detecta gesto	                             main_room
+2	Point_forward	  Apunta con indice hacia la camara	            floor_colapse
+3	Go_left	        Mano izquierda apunta hacia la izquierda      dead_end
+4	Go_right	      Mano derecha apunta hacia la derecha          door_locked
 
-| # | Gesture | How to trigger |
-|---|---|---|
-| 1 | Muehehe | Both hands up, index fingers only, tips touching |
-| 2 | Devo cat | Both hands up, above the top of your head |
-| 3 | Crash out cord chewing kitty | Both hands up beside your face to hold yummy electrical cable |
-| 4 | I will punch you | One hand, all four fingers curled |
-| 5 | EHHEHEEEHEEEE | Thumb + pinky out, rockstar cat |
-| 6 | Shhh silenced cat | Index finger only, tip resting on your mouth |
-| 7 | Erm ackshuALLY! cat | Index finger only, held away from your face |
-| 8 | Shocked/kidnapped cat | Hand cover mouth |
-| 9 | gGIMME MONIE!! | One open palm, all fingers extended, away from your face |
-| 10 | Side eye cat | Turn your head 15°+ either way (real head-pose yaw) |
-| 11 | Pokercat | Default |
-| 12 | Spinny OIIAI cat | You spin!!!! |
+carpeta de imágenes
+https://github.com/Lechugaluminio/gatos/tree/main/dppi-tarea-02/memes
 
+video
+No lo conseguí :(
 
-Meme images live in `memes/`. A couple of gestures pick randomly between multiple images.
-
-## Running it — desktop (Python)
-
-Requires Python 3 and a webcam.
-
-Easiest way: just double-click **`Launch Gesture Meme.command`**. First run takes a minute to set itself up (installs everything automatically), then launches straight away. Every run after that is instant.
-
-**First time opening it:** macOS will warn "cannot be opened because it is from an unidentified developer" — this is normal for any downloaded script, not specific to this one. Right-click the file → **Open** → click **Open** in the dialog that appears. You only need to do this once.
-
-Or manually, if you prefer Terminal:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python3 gesture_meme.py
-```
-
-Press `q` or `Esc` in the Camera window to quit.
-
-## Running it — browser
-
-No install needed, but the webcam API requires serving over HTTP (opening `index.html` directly as a `file://` URL will not get camera permission). From this folder:
-
-```bash
-python3 -m http.server 8000
-```
-
-Then open `http://localhost:8000` and allow camera access. Models load from Google's hosted MediaPipe CDN at runtime, so nothing local is needed for the browser version.
-
-## Live debug HUD
-
-The Camera window always shows a small readout in the top-left corner:
-
-```
-gesture: sideEyeCat
-yaw: +18.4 deg  (side-eye thr +/-15.0)
-```
-
-Useful for tuning the detection thresholds at the top of `gesture_meme.py` / `app.js` if a gesture is triggering too easily or not easily enough for your setup/lighting.
-
-## Project layout
+Notas: 
+Alcancé la cuota en antigravity y kimi estaba saturado. Cambié a otro computador donde también alcancé la cuota de antigravity mucho más rápido que antes con otra cuenta. Volvi a mi computador y avancé con visual studio code preguntando a gemini pero en el cambio de computador dejó de funcionar la camara del programa, hasta ese momento los gestos: point_forward, praise_the_sun y main_room estaban funcionando bien. Alcancé a usar kimi un rato para agregar el gesto go_right y en visual studio agregué go_left pero no los ude probar por el problema de camara. 
 
 ```
 gesture_meme.py   desktop version (OpenCV + MediaPipe Python tasks API)
